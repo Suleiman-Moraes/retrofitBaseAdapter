@@ -1,10 +1,15 @@
 package com.senaigo.retrofit.activity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.senaigo.retrofit.R;
@@ -28,6 +33,8 @@ public class ActivityUser extends AppCompatActivity {
     EditText txtId;
     EditText txtUserName;
     EditText txtData;
+    TextView txtId2;
+    ImageButton imgBtnEdit;
     ListView listViewUser;
     List<User> listUser;
     List<Map<String,String>> colecao = new ArrayList<>();
@@ -56,7 +63,7 @@ public class ActivityUser extends AppCompatActivity {
                 }
 
                 String[] from = {"userId","title"};
-                int[] to = {R.id.txtId,R.id.txtUserName};
+                int[] to = {R.id.txtId2,R.id.txtUserName};
 
                 SimpleAdapter simpleAdapter =
                         new SimpleAdapter(
@@ -67,6 +74,12 @@ public class ActivityUser extends AppCompatActivity {
                                 to);
 
                 listViewUser.setAdapter(simpleAdapter);
+                listViewUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        teste();
+                    }
+                });
             }
 
             @Override
@@ -74,5 +87,21 @@ public class ActivityUser extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.toString(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void addUser(View view) {
+    }
+
+    public void teste() {
+//        String username,data;
+//        Integer id;
+//        String pos = listViewUser.getPositionForView((View)view.getParent()) + "";
+//        txtId2 = findViewById(R.id.txtId2);
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Erro!");
+        alertDialog.setMessage("Aki");
+        alertDialog.show();
+//        id = Integer.parseInt(txtId.getText().toString());
+//        username = txtUserName.getText().toString();
     }
 }
