@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android Retrofit2</string>
+    <string name="btn_text_user">User</string>
+    <string name="hint_txt_id">Enter id</string>
+    <string name="hint_txt_username">Enter username</string>
+    <string name="hint_txt_data">Enter your data</string>
+    <string name="btn_txt_addUser">Add</string>
+</resources>
