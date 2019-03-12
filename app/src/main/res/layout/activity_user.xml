@@ -11,16 +11,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:hint="@string/txt_id_gene" />
+
         <EditText
-            android:id="@+id/txtId"
+            android:id="@+id/txtUserId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/hint_txt_id"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/txtUserName"
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -28,23 +35,47 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/txtData"
+            android:id="@+id/txtBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/hint_txt_data"
             android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/btnAddUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="addUser"
-            android:text="@string/btn_txt_addUser" />
-
         <ListView
             android:id="@+id/listViewUser"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="299dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="adicionar"
+                android:text="@string/btn_add" />
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:onClick="editar" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="deletar"
+                android:layout_weight="1" />
+
+        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

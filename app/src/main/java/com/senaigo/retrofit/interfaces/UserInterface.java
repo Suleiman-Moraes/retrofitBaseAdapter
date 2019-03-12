@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface UserInterface {
     @GET("posts")
@@ -18,9 +19,9 @@ public interface UserInterface {
     @POST("posts")
     Call<User> post(@Body User user);
 
-    @PUT("posts")
-    Call<User> put(@Body User user);
+    @PUT("posts/{id}")
+    Call<User> put(@Body User user, @Path("id") Integer id);
 
-    @DELETE("posts")
-    Call<Void> delete(@Body User user);
+    @DELETE("posts/{id}")
+    Call<Void> delete(@Path("id") Integer id);
 }
