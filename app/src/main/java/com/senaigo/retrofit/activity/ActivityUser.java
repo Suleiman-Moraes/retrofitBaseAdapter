@@ -4,24 +4,24 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.senaigo.retrofit.R;
+import com.senaigo.retrofit.adapter.UserAdapter;
 import com.senaigo.retrofit.bootstrap.APIClient;
 import com.senaigo.retrofit.interfaces.UserInterface;
 import com.senaigo.retrofit.model.User;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,12 +35,9 @@ public class ActivityUser extends AppCompatActivity {
     EditText txtTitle;
     EditText txtBody;
     TextView textView;
-    TextView txtId2;
-    ImageButton imgBtnEdit;
     ListView listViewUser;
-    List<User> listUser;
-    List<Map<String, Object>> colecao = new LinkedList<>();
-    Map<String, Object> mapSelecionado;
+    List<User> listUser = new LinkedList<>();
+    User objSelecionado;
     private Integer poss;
     Button deletar;
     Button editar;
@@ -67,19 +64,15 @@ public class ActivityUser extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 listUser = response.body();
-
-                for (User u : listUser) {
-                    //Criar dados para adapter
-                    colecao.add(u.getMap());
-                }
+                Log.i("chegou?", listUser.size() + "");
 
                 setarAdapter();
                 listViewUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        mapSelecionado = colecao.get(position);
-                        String textoBtn = getString(R.string.btn_deletar) + " " + mapSelecionado.get("id");
-                        String textoBtnEditar = getString(R.string.btn_editar) + " " + mapSelecionado.get("id");
+                        objSelecionado = listUser.get(position);
+                        String textoBtn = getString(R.string.btn_deletar) + " " + objSelecionado.getId();
+                        String textoBtnEditar = getString(R.string.btn_editar) + " " + objSelecionado.getId();
                         deletar.setText(textoBtn);
                         editar.setText(textoBtnEditar);
                         setPoss(new Integer(position));
@@ -97,36 +90,27 @@ public class ActivityUser extends AppCompatActivity {
     }
 
     private void setarAdapter() {
-        String[] from = {"id", "title"};
-        int[] to = {R.id.txtId2, R.id.txtTitle};
-
-        SimpleAdapter simpleAdapter =
-                new SimpleAdapter(
-                        getApplicationContext(),
-                        colecao,
-                        R.layout.user,
-                        from,
-                        to);
-
-        listViewUser.setAdapter(simpleAdapter);
+        Log.i("setarAdapter", "ate aki");
+        UserAdapter pessoaAdapter = new UserAdapter(this, listUser);
+        listViewUser.setAdapter(pessoaAdapter);
     }
 
     @SuppressLint("SetTextI18n")
     public void editar(View view) {
-        textView.setText(mapSelecionado.get("id") + "");
-        txtUserId.setText(mapSelecionado.get("userId") + "");
-        txtTitle.setText(mapSelecionado.get("title") + "");
-        txtBody.setText(mapSelecionado.get("body") + "");
+        textView.setText(objSelecionado.getId() + "");
+        txtUserId.setText(objSelecionado.getUserId() + "");
+        txtTitle.setText(objSelecionado.getTitle() + "");
+        txtBody.setText(objSelecionado.getBody() + "");
         editar.setEnabled(Boolean.FALSE);
         deletar.setEnabled(Boolean.FALSE);
     }
 
     public void deletar(View view) {
-        Call<Void> delete = apiUserInterface.delete((Integer) mapSelecionado.get("id"));
+        Call<Void> delete = apiUserInterface.delete(objSelecionado.getId());
         delete.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                colecao.remove((int)getPoss());
+                listUser.remove((int)getPoss());
                 limparCampos();
                 setarAdapter();
             }
@@ -154,7 +138,7 @@ public class ActivityUser extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         User user = response.body();
-                        colecao.add(user.getMap());
+                        listUser.add(user);
                         limparCampos();
                         setarAdapter();
                     }
@@ -173,7 +157,7 @@ public class ActivityUser extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         User user = response.body();
-                        colecao.set(getPoss(), user.getMap());
+                        listUser.set(getPoss(), user);
                         limparCampos();
                         setarAdapter();
                     }
@@ -221,7 +205,7 @@ public class ActivityUser extends AppCompatActivity {
         editar.setEnabled(Boolean.FALSE);
         deletar.setEnabled(Boolean.FALSE);
         poss = 0;
-        mapSelecionado = null;
+        objSelecionado = null;
     }
 
     public Integer getPoss() {
