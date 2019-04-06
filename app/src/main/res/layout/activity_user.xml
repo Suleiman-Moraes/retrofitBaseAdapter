@@ -9,43 +9,143 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textView"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:hint="@string/txt_id_gene" />
+            android:layout_height="307dp">
 
-        <EditText
-            android:id="@+id/txtUserId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_txt_id"
-            android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_txt_username"
-            android:inputType="textPersonName" />
+                <TextView
+                    android:id="@+id/txtViewId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/txtBody"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_txt_data"
-            android:inputType="textPersonName" />
+                <EditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/nome"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/sobrenome"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/e_mail"
+                    android:inputType="textEmailAddress" />
+
+                <EditText
+                    android:id="@+id/txtPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/telefone"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/txtWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/site"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/rua"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtSuite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/complemento"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/cidade"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtZipcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/cep"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/latitude"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtLng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/longitude"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtNameCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/nome_da_empresa"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtCatchPhrase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/slogan"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/txtBs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/bs"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+        </ScrollView>
 
         <ListView
             android:id="@+id/listViewUser"
             android:layout_width="match_parent"
-            android:layout_height="299dp" />
+            android:layout_height="152dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,9 +172,9 @@
                 android:id="@+id/btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:enabled="false"
-                android:onClick="deletar"
-                android:layout_weight="1" />
+                android:onClick="deletar" />
 
         </LinearLayout>
     </LinearLayout>

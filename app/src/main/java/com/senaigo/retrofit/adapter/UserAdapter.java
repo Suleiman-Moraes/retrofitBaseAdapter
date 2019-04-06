@@ -63,16 +63,18 @@ public class UserAdapter extends BaseAdapter {
         //Neste ponto vc ira popular os dados do seu layout,
         //utilizando JAVA.
 
-        TextView campoNome, campoEmail;
+        TextView campoid, campoTexto1, campoTexto2;
 
         //CASO não queria declarar um campo
         //((TextView)view.findViewById(R.id.txtItemNome)).setText(pessoa.getNome());
 
-        campoNome = view.findViewById(R.id.txtId2);
-        campoEmail = view.findViewById(R.id.txtTitle);
+        campoid = view.findViewById(R.id.txtId);
+        campoTexto1 = view.findViewById(R.id.txt1);
+        campoTexto2 = view.findViewById(R.id.txt2);
 
-        campoNome.setText(user.getId() + "");
-        campoEmail.setText(user.getTitle());
+        campoid.setText(user.getId() + "");
+        campoTexto1.setText(user.getName());
+        campoTexto2.setText(user.getUsername());
 
         return view;
     }

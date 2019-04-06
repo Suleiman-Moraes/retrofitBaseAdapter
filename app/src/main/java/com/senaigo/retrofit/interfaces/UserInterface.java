@@ -13,15 +13,15 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserInterface {
-    @GET("posts")
+    @GET("users")
     Call<List<User>> get();
 
-    @POST("posts")
+    @POST("users")
     Call<User> post(@Body User user);
 
-    @PUT("posts/{id}")
+    @PUT("users/{id}")
     Call<User> put(@Body User user, @Path("id") Integer id);
 
-    @DELETE("posts/{id}")
+    @DELETE("users/{id}")
     Call<Void> delete(@Path("id") Integer id);
 }
